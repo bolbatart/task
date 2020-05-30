@@ -18,11 +18,16 @@ function getUpcomingSunday(opDate) {
   return opDate;
 }
 
-function getCommission(percent) {
+function getCoefficient(percent) {
   return percent / 100;
+}
+
+function roundFee(fee) {
+  return (Math.ceil(fee * 100) / 100).toFixed(2);
 }
 
 module.exports = {
   getUpcomingSunday,
-  getCommission,
+  getCoefficient,
+  roundFee,
 };

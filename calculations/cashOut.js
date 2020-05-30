@@ -1,4 +1,4 @@
-const { getCommission, getUpcomingSunday } = require('../helper');
+const { getCoefficient, getUpcomingSunday, roundFee } = require('../helper');
 
 const database = []; // issivaizduokim, kad tai yra duombaze
 
@@ -12,7 +12,7 @@ function cashOutNatural(opInfo, cfg) {
 
     if (expires >= opDate) {
       if (user.total_amount > cfg.week_limit.amount)
-        fee = opInfo.operation.amount * getCommission(cfg.percents);
+        fee = opInfo.operation.amount * getCoefficient(cfg.percents);
       else if (
         user.total_amount + opInfo.operation.amount >
         cfg.week_limit.amount
@@ -21,11 +21,11 @@ function cashOutNatural(opInfo, cfg) {
           (user.total_amount +
             opInfo.operation.amount -
             cfg.week_limit.amount) *
-          getCommission(cfg.percents);
+          getCoefficient(cfg.percents);
       else
         fee =
           (user.total_amount + opInfo.operation.amount) *
-          getCommission(cfg.percents);
+          getCoefficient(cfg.percents);
     } else {
       user.total_amount = opInfo.operation.amount;
       user.expires = getUpcomingSunday(opInfo.date);
@@ -33,7 +33,7 @@ function cashOutNatural(opInfo, cfg) {
       else
         fee =
           (opInfo.operation.amount - cfg.week_limit.amount) *
-          getCommission(cfg.percents);
+          getCoefficient(cfg.percents);
     }
   } else {
     user = {
@@ -46,15 +46,15 @@ function cashOutNatural(opInfo, cfg) {
     else
       fee =
         (opInfo.operation.amount - cfg.week_limit.amount) *
-        getCommission(cfg.percents);
+        getCoefficient(cfg.percents);
   }
-  console.log(fee.toFixed(2));
+  console.log(roundFee(fee));
 }
 
 function cashOutLegal(opInfo, cfg) {
-  let fee = opInfo.operation.amount * getCommission(cfg.percents);
+  let fee = opInfo.operation.amount * getCoefficient(cfg.percents);
   if (fee < cfg.min.amount) fee = cfg.min.amount;
-  console.log(fee.toFixed(2));
+  console.log(roundFee(fee));
 }
 
 module.exports = {

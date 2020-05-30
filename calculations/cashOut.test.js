@@ -12,7 +12,7 @@ describe('get a cash out fee for a natural person', () => {
     console.log = jest.fn();
   });
 
-  test('get the 87.00 EUR as a fee for 30000.00 EUR cash out', () => {
+  test('get 87.00 EUR as a fee for 30000.00 EUR cash out', () => {
     const operation_info = {
       date: '2020-05-29',
       user_id: 1,
@@ -28,7 +28,7 @@ describe('get a cash out fee for a natural person', () => {
     expect(console.log).toHaveBeenCalledWith('87.00');
   });
 
-  test('get the 0.30 EUR as a fee for 100.00 EUR cash out after 30000.00 EUR cash out', () => {
+  test('get 0.30 EUR as a fee for 100.00 EUR cash out after 30000.00 EUR cash out', () => {
     const operation_info = {
       date: '2020-05-29',
       user_id: 1,
@@ -43,7 +43,7 @@ describe('get a cash out fee for a natural person', () => {
     expect(console.log).toHaveBeenCalledWith('0.30');
   });
 
-  test('get the 0.00 EUR as a fee for 100.00 EUR cash out after all previous week cash outs', () => {
+  test('get 0.00 EUR as a fee for 100.00 EUR cash out after all previous week cash outs', () => {
     const operation_info = {
       date: '2020-06-03',
       user_id: 1,
@@ -67,7 +67,7 @@ describe('get a cash out fee for a legal person', () => {
     console.log = jest.fn();
   });
 
-  test('get the 0.90 EUR as a fee for 300.00 EUR cash out', () => {
+  test('get 0.90 EUR as a fee for 300.00 EUR cash out', () => {
     const operation_info = {
       date: '2020-05-29',
       user_id: 2,
@@ -80,7 +80,7 @@ describe('get a cash out fee for a legal person', () => {
     expect(console.log).toHaveBeenCalledWith('0.90');
   });
 
-  test('get the 0.50 EUR as a fee for 1.00 EUR cash out', () => {
+  test('get 0.50 EUR as a fee for 1.00 EUR cash out', () => {
     const operation_info = {
       date: '2020-05-29',
       user_id: 2,

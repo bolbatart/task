@@ -11,7 +11,7 @@ beforeAll(async () => {
 });
 
 describe('get a cash in fee which is less than 5.00 EUR', () => {
-  test('get the 0.06 EUR as a fee for 200.00 EUR cash in', () => {
+  test('get 0.06 EUR as a fee for 200.00 EUR cash in', () => {
     const operation_info = {
       date: '2016-01-05',
       user_id: 1,
@@ -24,7 +24,7 @@ describe('get a cash in fee which is less than 5.00 EUR', () => {
     expect(console.log).toHaveBeenCalledWith('0.06');
   });
 
-  test('get the 5.00 EUR as a fee for 100000.00 EUR cash in', () => {
+  test('get 5.00 EUR as a fee for 100000.00 EUR cash in', () => {
     const operation_info = {
       date: '2016-01-05',
       user_id: 1,

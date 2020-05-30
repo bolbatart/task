@@ -12,7 +12,7 @@ beforeAll(async () => {
 
 describe('get a cash in fee which is less than 5.00 EUR', () => {
   test('get 0.06 EUR as a fee for 200.00 EUR cash in', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2016-01-05',
       user_id: 1,
       user_type: 'natural',
@@ -20,12 +20,12 @@ describe('get a cash in fee which is less than 5.00 EUR', () => {
       operation: { amount: 200.0, currency: 'EUR' },
     };
 
-    cashIn(operation_info, cfg);
+    cashIn(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('0.06');
   });
 
   test('get 5.00 EUR as a fee for 100000.00 EUR cash in', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2016-01-05',
       user_id: 1,
       user_type: 'natural',
@@ -33,13 +33,13 @@ describe('get a cash in fee which is less than 5.00 EUR', () => {
       operation: { amount: 100000.0, currency: 'EUR' },
     };
 
-    cashIn(operation_info, cfg);
+    cashIn(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('5.00');
   });
 });
 
 test('get the max cash in fee', () => {
-  const operation_info = {
+  const operationInfo = {
     date: '2016-01-05',
     user_id: 1,
     user_type: 'natural',
@@ -47,6 +47,6 @@ test('get the max cash in fee', () => {
     operation: { amount: 1000000.0, currency: 'EUR' },
   };
 
-  cashIn(operation_info, cfg);
+  cashIn(operationInfo, cfg);
   expect(console.log).toHaveBeenCalledWith('5.00');
 });

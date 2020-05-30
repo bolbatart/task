@@ -13,7 +13,7 @@ describe('get a cash out fee for a natural person', () => {
   });
 
   test('get 87.00 EUR as a fee for 30000.00 EUR cash out', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2020-05-29',
       user_id: 1,
       user_type: 'natural',
@@ -24,12 +24,12 @@ describe('get a cash out fee for a natural person', () => {
       },
     };
 
-    cashOutNatural(operation_info, cfg);
+    cashOutNatural(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('87.00');
   });
 
   test('get 0.30 EUR as a fee for 100.00 EUR cash out after 30000.00 EUR cash out', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2020-05-29',
       user_id: 1,
       user_type: 'natural',
@@ -39,12 +39,12 @@ describe('get a cash out fee for a natural person', () => {
         currency: 'EUR',
       },
     };
-    cashOutNatural(operation_info, cfg);
+    cashOutNatural(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('0.30');
   });
 
   test('get 0.00 EUR as a fee for 100.00 EUR cash out after all previous week cash outs', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2020-06-03',
       user_id: 1,
       user_type: 'natural',
@@ -52,7 +52,7 @@ describe('get a cash out fee for a natural person', () => {
       operation: { amount: 100, currency: 'EUR' },
     };
 
-    cashOutNatural(operation_info, cfg);
+    cashOutNatural(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('0.00');
   });
 });
@@ -68,7 +68,7 @@ describe('get a cash out fee for a legal person', () => {
   });
 
   test('get 0.90 EUR as a fee for 300.00 EUR cash out', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2020-05-29',
       user_id: 2,
       user_type: 'juridical',
@@ -76,12 +76,12 @@ describe('get a cash out fee for a legal person', () => {
       operation: { amount: 300.0, currency: 'EUR' },
     };
 
-    cashOutLegal(operation_info, cfg);
+    cashOutLegal(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('0.90');
   });
 
   test('get 0.50 EUR as a fee for 1.00 EUR cash out', () => {
-    const operation_info = {
+    const operationInfo = {
       date: '2020-05-29',
       user_id: 2,
       user_type: 'juridical',
@@ -89,7 +89,7 @@ describe('get a cash out fee for a legal person', () => {
       operation: { amount: 1.0, currency: 'EUR' },
     };
 
-    cashOutLegal(operation_info, cfg);
+    cashOutLegal(operationInfo, cfg);
     expect(console.log).toHaveBeenCalledWith('0.50');
   });
 });
